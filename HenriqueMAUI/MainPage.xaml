@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HenriqueMAUI.MainPage"
+             xmlns:drawable="clr-namespace:HenriqueMAUI.Drawables"
+             xmlns:viewmodel="clr-namespace:HenriqueMAUI"
+             x:DataType="viewmodel:MainPageViewModel">
+    <ContentPage.Resources> 
+        <drawable:GraphicsDrawable x:Key="drawable" />
+    </ContentPage.Resources>
+    
+    <ScrollView>
+        <HorizontalStackLayout>
+            <Frame BackgroundColor="#383444"
+                   Margin="25"
+                   HorizontalOptions="Start">
+                <GraphicsView Drawable="{StaticResource drawable}"
+                              HeightRequest="500"
+                              WidthRequest="500"/>
+            </Frame>
+
+            <VerticalStackLayout
+                HorizontalOptions="End"
+                VerticalOptions="Center"
+                Padding="30,0"
+                Spacing="10">
+
+                <Label Text="Preço Inicial"
+                       Style="{StaticResource H2-WhiteLabel}" />
+                <Entry WidthRequest="200"
+                       Text="{Binding PrecoInicial}"/>
+                
+                <Label Text="Volatilidade média (%)"
+                       Style="{StaticResource H2-WhiteLabel}" />
+                <Entry WidthRequest="200"
+                       Text="{Binding Volatilidade}"
+                />
+                
+                <Label Text="Retorno médio (%)"
+                        Style="{StaticResource H2-WhiteLabel}" />
+                <Entry WidthRequest="200"
+                       Text="{Binding Retorno}"
+                 />
+
+                <Label Text="Tempo (dias)"
+                       Style="{StaticResource H2-WhiteLabel}" />
+                <Entry WidthRequest="200"
+                       Text="{Binding Tempo}"
+                    />
+
+                <Button
+                    x:Name="CounterBtn"
+                    Text="Gerar simulação" 
+                    SemanticProperties.Hint="Gera a simualação do gráfico"
+                    Command="{Binding SearchClickedCommand}"
+                    HorizontalOptions="CenterAndExpand"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
+    </ScrollView>
+
+</ContentPage>
