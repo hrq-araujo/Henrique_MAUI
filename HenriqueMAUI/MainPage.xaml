@@ -25,35 +25,37 @@
                 Padding="30,0"
                 Spacing="10">
 
+                <!-- PREÇO INICIAL-->
                 <Label Text="Preço Inicial"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
                        Text="{Binding PrecoInicialTxt}"/>
-                
+
+                <!-- VOLATILIDADE MÉDIA -->
                 <Label Text="Volatilidade média (%)"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
                        Text="{Binding VolatilidadeTxt}"
                 />
-                
+
+                <!-- RETORNO MÉDIO-->
                 <Label Text="Retorno médio (%)"
                         Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
                        Text="{Binding RetornoTxt}"
                  />
 
+                <!-- TEMPO EM DIAS-->
                 <Label Text="Tempo (dias)"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
                        Text="{Binding TempoTxt}"
                     />
 
-                <Button
-                    x:Name="CounterBtn"
-                    Text="Gerar simulação" 
-                    SemanticProperties.Hint="Gera a simualação do gráfico"
-                    Command="{Binding SearchClickedCommand}"
-                    HorizontalOptions="CenterAndExpand"/>
+                <Button Text="Gerar simulação" 
+                        SemanticProperties.Hint="Gera a simualação do gráfico"
+                        Command="{Binding SearchClickedCommand}"
+                        HorizontalOptions="CenterAndExpand"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>
     </ScrollView>
