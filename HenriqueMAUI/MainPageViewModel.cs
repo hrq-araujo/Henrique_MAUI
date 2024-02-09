@@ -93,7 +93,9 @@ namespace HenriqueMAUI
         private void GenerateGraphic(double[] prices, int tempo)
         {
             double pixelsToNextStop = 500 / tempo;
-
+            //definir regra sabendo que: valor mais alto terá y mais próximo a 0
+            //valor mais baixo tera y mais proximo a 500
+            //para o eixo X, somar o pixelsToNextStop em cada iteração (menos a primeira)
             GraphicsDrawable graphics = new GraphicsDrawable();
             graphics.xDestination = pixelsToNextStop;
             graphics.yDestination = 0;

@@ -17,7 +17,6 @@ namespace HenriqueMAUI.Drawables
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             canvas.StrokeColor = Color.FromArgb("#FF7B68EE");
-            //canvas.DrawRectangle(0,0,200,100);
 
 
             PathF path = new PathF();
@@ -37,7 +36,7 @@ namespace HenriqueMAUI.Drawables
 
         public void DrawNewLine(ICanvas canvas, float xOrigin, float yOrigin)
         {
-
+            
             canvas.DrawLine(xOrigin, yOrigin, 500, 350);
         }
     }
