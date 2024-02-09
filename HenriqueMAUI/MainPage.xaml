@@ -28,24 +28,24 @@
                 <Label Text="Preço Inicial"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
-                       Text="{Binding PrecoInicial}"/>
+                       Text="{Binding PrecoInicialTxt}"/>
                 
                 <Label Text="Volatilidade média (%)"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
-                       Text="{Binding Volatilidade}"
+                       Text="{Binding VolatilidadeTxt}"
                 />
                 
                 <Label Text="Retorno médio (%)"
                         Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
-                       Text="{Binding Retorno}"
+                       Text="{Binding RetornoTxt}"
                  />
 
                 <Label Text="Tempo (dias)"
                        Style="{StaticResource H2-WhiteLabel}" />
                 <Entry WidthRequest="200"
-                       Text="{Binding Tempo}"
+                       Text="{Binding TempoTxt}"
                     />
 
                 <Button
