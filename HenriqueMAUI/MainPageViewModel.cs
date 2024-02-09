@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using HenriqueMAUI.Drawables;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace HenriqueMAUI
     {
         [ObservableProperty]
         string volatilidadeTxt = "";
+
+        //public string volatilidadeValue;
+
+        public string volatilidadeLabel = "Volatilidade (%)";
 
         [ObservableProperty]
         string retornoTxt = "";
@@ -32,6 +37,9 @@ namespace HenriqueMAUI
 
         int tempo = 0;
 
+        [ObservableProperty]
+        GraphicsView drawableGraphics;
+
 
         public void StartViewModel()
         {
@@ -44,8 +52,16 @@ namespace HenriqueMAUI
 
             var prices = GenerateBrownianMotion(volatilidade, retorno, precoInicial, tempo);
 
-            GraphicsDrawable graphics = new GraphicsDrawable();
+            GenerateGraphic(prices, tempo);
         }
+
+
+        //[RelayCommand]
+        //private void DragVolatilidadeCompleted()
+        //{
+        //    volatilidadeLabel = volatilidadeValue + "%";
+        //}
+
         public static double[] GenerateBrownianMotion(double sigma, double mean, double initialPrice, int numDays)
         {
             Random rand = new();
@@ -72,6 +88,21 @@ namespace HenriqueMAUI
             retorno = double.Parse(retornoTxt)/100;
             precoInicial = double.Parse(precoInicialTxt);
             tempo = int.Parse(tempoTxt);
+        }
+
+        private void GenerateGraphic(double[] prices, int tempo)
+        {
+            double pixelsToNextStop = 500 / tempo;
+
+            GraphicsDrawable graphics = new GraphicsDrawable();
+            graphics.xDestination = pixelsToNextStop;
+            graphics.yDestination = 0;
+            graphics.xOrigin = 0;
+            graphics.yOrigin = 0;
+
+            if(drawableGraphics != null)
+                drawableGraphics.Invalidate();
+                
         }
     }
 

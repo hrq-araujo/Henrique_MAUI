@@ -15,6 +15,7 @@
                    Margin="25"
                    HorizontalOptions="Start">
                 <GraphicsView Drawable="{StaticResource drawable}"
+                              x:Name="GraphicView"
                               HeightRequest="500"
                               WidthRequest="500"/>
             </Frame>
@@ -26,28 +27,37 @@
                 Spacing="10">
 
                 <!-- PREÇO INICIAL-->
-                <Label Text="Preço Inicial"
-                       Style="{StaticResource H2-WhiteLabel}" />
+                <Label Text="Preço Inicial" 
+                       FontAttributes="Bold"
+                       FontFamily="Montserrat"/>
                 <Entry WidthRequest="200"
                        Text="{Binding PrecoInicialTxt}"/>
 
                 <!-- VOLATILIDADE MÉDIA -->
                 <Label Text="Volatilidade média (%)"
-                       Style="{StaticResource H2-WhiteLabel}" />
+                       FontAttributes="Bold"
+                       FontFamily="Montserrat"/>
                 <Entry WidthRequest="200"
                        Text="{Binding VolatilidadeTxt}"
                 />
+                <!--Slider Maximum="100"
+                        Minimum="0.01"
+                        Value="{Binding VolatilidadeValue}"
+                        DragCompleted="{Binding DragVolatilidadeCompletedCommand}"
+                    /-->
 
                 <!-- RETORNO MÉDIO-->
                 <Label Text="Retorno médio (%)"
-                        Style="{StaticResource H2-WhiteLabel}" />
+                       FontAttributes="Bold"
+                       FontFamily="Montserrat" />
                 <Entry WidthRequest="200"
                        Text="{Binding RetornoTxt}"
                  />
 
                 <!-- TEMPO EM DIAS-->
                 <Label Text="Tempo (dias)"
-                       Style="{StaticResource H2-WhiteLabel}" />
+                       FontAttributes="Bold"
+                       FontFamily="Montserrat" />
                 <Entry WidthRequest="200"
                        Text="{Binding TempoTxt}"
                     />
