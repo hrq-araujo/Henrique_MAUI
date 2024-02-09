@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using HenriqueMAUI.Drawables;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,16 +13,25 @@ namespace HenriqueMAUI
     public partial class MainPageViewModel : ObservableObject
     {
         [ObservableProperty]
-        string volatilidade = "";
+        string volatilidadeTxt = "";
 
         [ObservableProperty]
-        string retorno = "";
+        string retornoTxt = "";
 
         [ObservableProperty]
-        string precoInicial = "";
+        string precoInicialTxt = "";
 
         [ObservableProperty]
-        string tempo = "";
+        string tempoTxt = "";
+
+        double volatilidade = 0;
+
+        double retorno = 0;
+
+        double precoInicial = 0;
+
+        int tempo = 0;
+
 
         public void StartViewModel()
         {
@@ -30,7 +40,11 @@ namespace HenriqueMAUI
         [RelayCommand]
         private void SearchClicked()
         {
-            Console.WriteLine("preco inicial:" + precoInicial);
+            CorrectInsertedValues(volatilidadeTxt, retornoTxt, precoInicialTxt, tempoTxt);
+
+            var prices = GenerateBrownianMotion(volatilidade, retorno, precoInicial, tempo);
+
+            GraphicsDrawable graphics = new GraphicsDrawable();
         }
         public static double[] GenerateBrownianMotion(double sigma, double mean, double initialPrice, int numDays)
         {
@@ -50,6 +64,14 @@ namespace HenriqueMAUI
             }
 
             return prices;
+        }
+
+        private void CorrectInsertedValues(string volatilidadeTxt, string retornoTxt, string precoInicialTxt, string tempoTxt)
+        {
+            volatilidade = double.Parse(volatilidadeTxt)/100;
+            retorno = double.Parse(retornoTxt)/100;
+            precoInicial = double.Parse(precoInicialTxt);
+            tempo = int.Parse(tempoTxt);
         }
     }
 
