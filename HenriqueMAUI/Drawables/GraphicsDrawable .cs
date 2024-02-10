@@ -1,5 +1,4 @@
-﻿using Microsoft.UI.Composition;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +16,11 @@ namespace HenriqueMAUI.Drawables
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             canvas.StrokeColor = Color.FromArgb("#FF7B68EE");
-
+             var rand = new Random();
 
             PathF path = new PathF();
-            path.MoveTo(0, 500);
-            path.LineTo(10, 430);
+            path.MoveTo(rand.Next(0, 101), rand.Next(0, 101));
+            path.LineTo(rand.Next(0, 101), rand.Next(0, 101));
             Console.WriteLine(xDestination);
 
             canvas.DrawPath(path);

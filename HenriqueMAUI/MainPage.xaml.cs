@@ -1,5 +1,4 @@
-﻿using Windows.Media.Audio;
-
+﻿
 namespace HenriqueMAUI
 {
     public partial class MainPage : ContentPage
@@ -11,6 +10,8 @@ namespace HenriqueMAUI
             InitializeComponent();
             BindingContext = viewModel;
             _viewModel = viewModel;
+            _viewModel._drawableGraphic = GraphicView;
+            _viewModel.StartViewModel();
         }
     }
 }

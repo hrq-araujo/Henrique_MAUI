@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 
 namespace HenriqueMAUI
 {
     public partial class MainPageViewModel : ObservableObject
     {
+        public GraphicsView _drawableGraphic;
+
         [ObservableProperty]
         string volatilidadeTxt = "";
 
@@ -37,12 +40,17 @@ namespace HenriqueMAUI
 
         int tempo = 0;
 
-        [ObservableProperty]
-        GraphicsView drawableGraphics;
 
 
         public void StartViewModel()
         {
+            var timer = new System.Timers.Timer(1000);
+            timer.Elapsed += new System.Timers.ElapsedEventHandler(RedrawGraphic);
+            timer.Start();
+        }
+
+        private void RedrawGraphic(object source, ElapsedEventArgs e) {
+            _drawableGraphic.Invalidate();
         }
 
         [RelayCommand]
@@ -102,8 +110,8 @@ namespace HenriqueMAUI
             graphics.xOrigin = 0;
             graphics.yOrigin = 0;
 
-            if(drawableGraphics != null)
-                drawableGraphics.Invalidate();
+            if (_drawableGraphic != null) { }
+                //_drawableGraphic.Invalidate();
                 
         }
     }
