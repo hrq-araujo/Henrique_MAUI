@@ -46,7 +46,7 @@ namespace HenriqueMAUI
         {
             var timer = new System.Timers.Timer(1000);
             timer.Elapsed += new System.Timers.ElapsedEventHandler(RedrawGraphic);
-            timer.Start();
+            //timer.Start();
         }
 
         private void RedrawGraphic(object source, ElapsedEventArgs e) {
@@ -100,19 +100,19 @@ namespace HenriqueMAUI
 
         private void GenerateGraphic(double[] prices, int tempo)
         {
-            double pixelsToNextStop = 500 / tempo;
+            float pixelsToNextStop = 500 / tempo;
             //definir regra sabendo que: valor mais alto terá y mais próximo a 0
             //valor mais baixo tera y mais proximo a 500
             //para o eixo X, somar o pixelsToNextStop em cada iteração (menos a primeira)
-            GraphicsDrawable graphics = new GraphicsDrawable();
-            graphics.xDestination = pixelsToNextStop;
-            graphics.yDestination = 0;
-            graphics.xOrigin = 0;
-            graphics.yOrigin = 0;
 
-            if (_drawableGraphic != null) { }
-                //_drawableGraphic.Invalidate();
-                
+            GraphicsDrawable graphics = new GraphicsDrawable();
+
+            graphics.prices = prices;
+            graphics.tempo = tempo;
+
+
+            _drawableGraphic.Drawable = graphics;
+            _drawableGraphic.Invalidate();
         }
     }
 

@@ -12,6 +12,7 @@ namespace HenriqueMAUI
             _viewModel = viewModel;
             _viewModel._drawableGraphic = GraphicView;
             _viewModel.StartViewModel();
+            
         }
     }
 }
