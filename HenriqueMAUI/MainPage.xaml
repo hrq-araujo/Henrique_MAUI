@@ -64,7 +64,7 @@
 
                 <Button Text="Gerar simulação" 
                         SemanticProperties.Hint="Gera a simualação do gráfico"
-                        Command="{Binding SearchClickedCommand}"
+                        Command="{Binding SimulationClickedCommand}"
                         HorizontalOptions="CenterAndExpand"/>
             </VerticalStackLayout>
         </HorizontalStackLayout>

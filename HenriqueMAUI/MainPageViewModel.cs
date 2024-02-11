@@ -19,10 +19,6 @@ namespace HenriqueMAUI
         [ObservableProperty]
         string volatilidadeTxt = "";
 
-        //public string volatilidadeValue;
-
-        public string volatilidadeLabel = "Volatilidade (%)";
-
         [ObservableProperty]
         string retornoTxt = "";
 
@@ -40,21 +36,8 @@ namespace HenriqueMAUI
 
         int tempo = 0;
 
-
-
-        public void StartViewModel()
-        {
-            var timer = new System.Timers.Timer(1000);
-            timer.Elapsed += new System.Timers.ElapsedEventHandler(RedrawGraphic);
-            //timer.Start();
-        }
-
-        private void RedrawGraphic(object source, ElapsedEventArgs e) {
-            _drawableGraphic.Invalidate();
-        }
-
         [RelayCommand]
-        private void SearchClicked()
+        private void SimulationClicked()
         {
             CorrectInsertedValues(volatilidadeTxt, retornoTxt, precoInicialTxt, tempoTxt);
 
@@ -100,11 +83,6 @@ namespace HenriqueMAUI
 
         private void GenerateGraphic(double[] prices, int tempo)
         {
-            float pixelsToNextStop = 500 / tempo;
-            //definir regra sabendo que: valor mais alto terá y mais próximo a 0
-            //valor mais baixo tera y mais proximo a 500
-            //para o eixo X, somar o pixelsToNextStop em cada iteração (menos a primeira)
-
             GraphicsDrawable graphics = new GraphicsDrawable();
 
             graphics.prices = prices;

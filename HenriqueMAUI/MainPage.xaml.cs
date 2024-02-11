@@ -11,7 +11,6 @@ namespace HenriqueMAUI
             BindingContext = viewModel;
             _viewModel = viewModel;
             _viewModel._drawableGraphic = GraphicView;
-            _viewModel.StartViewModel();
             
         }
     }

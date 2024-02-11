@@ -19,7 +19,7 @@ namespace HenriqueMAUI.Drawables
 
             if(prices != null && prices.Length > 0)
             {
-                float biggestPriceForScale = float.Parse(CheckBiggestPrice(prices).ToString("0.0000"));
+                float biggestPriceForScale = CheckBiggestPrice(prices);
 
                 float pixelsToSkipOnX = 500 / (float)tempo;
                 float xDestination = 0;
@@ -52,18 +52,13 @@ namespace HenriqueMAUI.Drawables
         {
             float price = float.Parse(iterationPrice.ToString("0.0000"));
 
-            if (biggestPriceForScale == price)
-                Console.WriteLine("aqui");
-
             double result = (iterationPrice * 500) / biggestPriceForScale;
-
             float height = float.Parse(result.ToString("0.0000"));
-            Console.WriteLine(500 - height);
 
             return 500-height;
         }
 
-        private double CheckBiggestPrice(double[] prices)
+        private float CheckBiggestPrice(double[] prices)
         {
             double biggestPrice = 0;
             for (int i = 0;i < prices.Length;i++)
@@ -71,7 +66,8 @@ namespace HenriqueMAUI.Drawables
                 if (prices[i] > biggestPrice)
                     biggestPrice = prices[i];
             }
-            return biggestPrice;
+
+            return float.Parse(biggestPrice.ToString("0.0000"));
         }
     }
 }
