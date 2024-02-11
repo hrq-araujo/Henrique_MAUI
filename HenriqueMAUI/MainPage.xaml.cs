@@ -1,5 +1,4 @@
-﻿
-namespace HenriqueMAUI
+﻿namespace HenriqueMAUI
 {
     public partial class MainPage : ContentPage
     {
