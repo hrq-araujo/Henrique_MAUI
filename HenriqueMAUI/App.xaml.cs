@@ -14,7 +14,7 @@
             var window = base.CreateWindow(activationState);
 
             // Change the window Size
-            window.Width = 900; window.Height = 700;
+            window.Width = 950; window.Height = 700;
 
             // BONUS -> Center the window
             var displayInfo = DeviceDisplay.Current.MainDisplayInfo;

@@ -9,7 +9,7 @@
         <drawable:GraphicsDrawable x:Key="drawable" />
     </ContentPage.Resources>
     
-    <ScrollView>
+    <ScrollView HorizontalOptions="Center">
         <HorizontalStackLayout>
             <Frame BackgroundColor="#383444"
                    Margin="25"
@@ -48,12 +48,13 @@
                            FontAttributes="Bold"
                            FontFamily="Montserrat"/>
                 </HorizontalStackLayout>
-                
-                <Entry WidthRequest="200"
-                       Text="{Binding VolatilidadeValue}"/>
+
                 <Slider Value="{Binding VolatilidadeValue}"
                         Minimum="0"
                         Maximum="100"/>
+                
+                <Entry WidthRequest="200"
+                       Text="{Binding VolatilidadeValue}"/>
 
                 <!-- RETORNO MÉDIO-->
                 <HorizontalStackLayout>
@@ -70,13 +71,13 @@
                            FontAttributes="Bold"
                            FontFamily="Montserrat"/>
                 </HorizontalStackLayout>
-                <Entry WidthRequest="200"
-                       Text="{Binding RetornoValue}"
-                 />
                 <Slider Value="{Binding RetornoValue}"
                         Minimum="0"
                         Maximum="100"
-                        />
+                      />
+                <Entry WidthRequest="200"
+                       Text="{Binding RetornoValue}"
+                 />
 
                 <!-- TEMPO EM DIAS-->
                 <Label Text="Tempo (dias)"
@@ -91,6 +92,25 @@
                         SemanticProperties.Hint="Gera a simualação do gráfico"
                         Command="{Binding SimulationClickedCommand}"
                         HorizontalOptions="CenterAndExpand"/>
+
+                <StackLayout IsVisible="{Binding IsPriceInfoVisible}">
+                    <!--MAIOR VALOR-->
+                    <Label Text="Maior valor encontrado: "
+                           FontFamily="Montserrat"/>
+
+                    <Label Text="{Binding BiggestPriceFound}"
+                           FontFamily="Montserrat"
+                           Margin="5,0,0,0"/>
+                    
+                    <!--MENOR VALOR-->
+                    <Label Text="Menor valor encontrado: "
+                           FontFamily="Montserrat"
+                           Margin="0,5,0,0"/>
+                    
+                    <Label Text="{Binding SmallestPriceFound}"
+                           FontFamily="Montserrat"
+                           Margin="5,0,0,0"/>
+                </StackLayout>
             </VerticalStackLayout>
         </HorizontalStackLayout>
     </ScrollView>

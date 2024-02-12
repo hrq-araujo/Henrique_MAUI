@@ -42,6 +42,15 @@ namespace HenriqueMAUI
 
         int tempo = 0;
 
+        [ObservableProperty]
+        public float biggestPriceFound;
+
+        [ObservableProperty]
+        public float smallestPriceFound;
+
+        [ObservableProperty]
+        public bool isPriceInfoVisible = false;
+
         [RelayCommand]
         private void SimulationClicked()
         {
@@ -52,6 +61,10 @@ namespace HenriqueMAUI
             if (isDataCorrect)
             {
                 var prices = GenerateBrownianMotion(volatilidade, retorno, precoInicial, tempo);
+
+                BiggestPriceFound = GeneralHelper.CheckBiggestPrice(prices);
+                SmallestPriceFound = GeneralHelper.CheckSmallestPrice(prices);
+                IsPriceInfoVisible = true;
 
                 GenerateGraphic(prices, tempo);
             }

@@ -47,6 +47,30 @@ namespace HenriqueMAUI
                 "Os campos 'Preço Inicial' e 'Tempo' não podem ser iguais a zero.",
                 "OK");
         }
+
+        public static float CheckBiggestPrice(double[] prices)
+        {
+            double biggestPrice = 0;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                if (prices[i] > biggestPrice)
+                    biggestPrice = prices[i];
+            }
+
+            return float.Parse(biggestPrice.ToString("0.00"));
+        }
+
+        public static float CheckSmallestPrice(double[] prices)
+        {
+            double smallestPrice = 10000000;
+            for (int i = 0; i < prices.Length; i++)
+            {
+                if (prices[i] < smallestPrice)
+                    smallestPrice = prices[i];
+            }
+
+            return float.Parse(smallestPrice.ToString("0.00"));
+        }
     }
 }
 
