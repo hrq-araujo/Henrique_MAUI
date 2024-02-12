@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:HenriqueMAUI"
     Shell.FlyoutBehavior="Disabled"
-    Title="HenriqueMAUI">
+    Title="Desafio MAUI - Henrique">
 
     <ShellContent
         Title="Desafio Henrique"

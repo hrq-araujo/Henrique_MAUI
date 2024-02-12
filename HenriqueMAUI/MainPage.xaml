@@ -34,25 +34,49 @@
                        Text="{Binding PrecoInicialTxt}"/>
 
                 <!-- VOLATILIDADE MÉDIA -->
-                <Label Text="Volatilidade média (%)"
-                       FontAttributes="Bold"
-                       FontFamily="Montserrat"/>
+                <HorizontalStackLayout>
+                    <Label Text="Volatilidade Média: "
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"/>
+
+                    <Label Text="{Binding VolatilidadeValue}"
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"
+                           Margin="2,0,0,0"/>
+
+                    <Label Text="%"
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"/>
+                </HorizontalStackLayout>
+                
                 <Entry WidthRequest="200"
-                       Text="{Binding VolatilidadeTxt}"
-                />
-                <!--Slider Maximum="100"
-                        Minimum="0.01"
-                        Value="{Binding VolatilidadeValue}"
-                        DragCompleted="{Binding DragVolatilidadeCompletedCommand}"
-                    /-->
+                       Text="{Binding VolatilidadeValue}"/>
+                <Slider Value="{Binding VolatilidadeValue}"
+                        Minimum="0"
+                        Maximum="100"/>
 
                 <!-- RETORNO MÉDIO-->
-                <Label Text="Retorno médio (%)"
-                       FontAttributes="Bold"
-                       FontFamily="Montserrat" />
+                <HorizontalStackLayout>
+                    <Label Text="Retorno Médio: "
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"/>
+
+                    <Label Text="{Binding RetornoValue}"
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"
+                           Margin="2,0,0,0"/>
+
+                    <Label Text="%"
+                           FontAttributes="Bold"
+                           FontFamily="Montserrat"/>
+                </HorizontalStackLayout>
                 <Entry WidthRequest="200"
-                       Text="{Binding RetornoTxt}"
+                       Text="{Binding RetornoValue}"
                  />
+                <Slider Value="{Binding RetornoValue}"
+                        Minimum="0"
+                        Maximum="100"
+                        />
 
                 <!-- TEMPO EM DIAS-->
                 <Label Text="Tempo (dias)"
@@ -62,7 +86,8 @@
                        Text="{Binding TempoTxt}"
                     />
 
-                <Button Text="Gerar simulação" 
+                <Button Text="{Binding ButtonTxt}" 
+                        IsEnabled="{Binding}"
                         SemanticProperties.Hint="Gera a simualação do gráfico"
                         Command="{Binding SimulationClickedCommand}"
                         HorizontalOptions="CenterAndExpand"/>

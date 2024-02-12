@@ -17,16 +17,22 @@ namespace HenriqueMAUI
         public GraphicsView _drawableGraphic;
 
         [ObservableProperty]
-        string volatilidadeTxt = "";
-
-        [ObservableProperty]
-        string retornoTxt = "";
-
-        [ObservableProperty]
         string precoInicialTxt = "";
 
         [ObservableProperty]
         string tempoTxt = "";
+
+        [ObservableProperty]
+        public float volatilidadeValue = 0;
+
+        [ObservableProperty]
+        public float retornoValue = 0;
+
+        [ObservableProperty]
+        private string buttonTxt = "Gerar simulação";
+
+        [ObservableProperty]
+        public bool isButtonEnabled = true;
 
         double volatilidade = 0;
 
@@ -39,19 +45,32 @@ namespace HenriqueMAUI
         [RelayCommand]
         private void SimulationClicked()
         {
-            CorrectInsertedValues(volatilidadeTxt, retornoTxt, precoInicialTxt, tempoTxt);
+            LocksSimulationButton();
 
-            var prices = GenerateBrownianMotion(volatilidade, retorno, precoInicial, tempo);
+            bool isDataCorrect = CorrectInsertedValues(volatilidadeValue, retornoValue, precoInicialTxt, tempoTxt);
 
-            GenerateGraphic(prices, tempo);
+            if (isDataCorrect)
+            {
+                var prices = GenerateBrownianMotion(volatilidade, retorno, precoInicial, tempo);
+
+                GenerateGraphic(prices, tempo);
+            }
+            UnlocksSimulationButton();
         }
 
+        #region BUTTON CONTROL
+        private void UnlocksSimulationButton()
+        {
+            ButtonTxt = "Gerar outra simulação";
+            IsButtonEnabled = true;
+        }
 
-        //[RelayCommand]
-        //private void DragVolatilidadeCompleted()
-        //{
-        //    volatilidadeLabel = volatilidadeValue + "%";
-        //}
+        private void LocksSimulationButton()
+        {
+            ButtonTxt = "Carregando...";
+            IsButtonEnabled = false;
+        }
+        #endregion
 
         public static double[] GenerateBrownianMotion(double sigma, double mean, double initialPrice, int numDays)
         {
@@ -73,12 +92,33 @@ namespace HenriqueMAUI
             return prices;
         }
 
-        private void CorrectInsertedValues(string volatilidadeTxt, string retornoTxt, string precoInicialTxt, string tempoTxt)
+
+
+        private bool CorrectInsertedValues(float volatilidadeValue, float retornoValue, string precoInicialTxt, string tempoTxt)
         {
-            volatilidade = double.Parse(volatilidadeTxt)/100;
-            retorno = double.Parse(retornoTxt)/100;
+            if(GeneralHelper.HasSpecialChars(precoInicialTxt) || GeneralHelper.HasSpecialChars(tempoTxt))
+            {
+                GeneralHelper.InvalidInputAlert();
+                return false;
+            }
+
+            if(!GeneralHelper.IsDigitsOnly(precoInicialTxt) || !GeneralHelper.IsDigitsOnly(tempoTxt))
+            {
+                GeneralHelper.InvalidInputAlert();
+                return false;
+            }
+
+            if (GeneralHelper.isEntryAZero(precoInicialTxt) || GeneralHelper.isEntryAZero(tempoTxt))
+            {
+                GeneralHelper.InputIsZeroAlert();
+                return false;
+            }
+
+            volatilidade = volatilidadeValue / 100;
+            retorno = retornoValue / 100;
             precoInicial = double.Parse(precoInicialTxt);
             tempo = int.Parse(tempoTxt);
+            return true;
         }
 
         private void GenerateGraphic(double[] prices, int tempo)
